@@ -419,6 +419,10 @@ tilde_expand_word (filename)
 #endif
 
   xfree (username);
+#ifdef ANDROID
+#define endgrent() do {} while (0)
+#define endpwent() do {} while (0)  // this line has been added
+#endif
 #if defined (HAVE_GETPWENT)
   endpwent ();
 #endif
